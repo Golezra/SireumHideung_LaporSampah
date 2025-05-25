@@ -39,10 +39,10 @@ self.addEventListener('fetch', function (event) {
     event.respondWith(
         caches.match(event.request).then(function (response) {
             return response || fetch(event.request).then(function (networkResponse) {
-                if (networkResponse.url.startsWith('http://')) {
-                    console.error('Insecure request blocked: ' + networkResponse.url);
-                    return caches.match('/fallback.html'); // Fallback ke halaman offline
-                }
+                // if (networkResponse.url.startsWith('http://')) {
+                //     console.error('Insecure request blocked: ' + networkResponse.url);
+                //     return caches.match('/fallback.html'); // Fallback ke halaman offline
+                // }
                 return networkResponse;
             }).catch(() => {
                 return caches.match('/fallback.html'); // Fallback jika fetch gagal

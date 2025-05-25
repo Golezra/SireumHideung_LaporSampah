@@ -23,11 +23,11 @@
     <table>
         <thead>
             <tr>
-                <th>Nama Pelapor</th>
-                <th>Lokasi Sampah</th>
-                <th>Jenis Sampah</th>
-                <th>Berat (Kg)</th>
-                <th>Nominal (Rp)</th>
+                <th>Pelapor</th>
+                <th>Lokasi</th>
+                <th>Sampah</th>
+                <th>Volume</th>
+                <th>Nominal</th>
                 <th>Status</th>
                 <th>Tanggal</th>
             </tr>
@@ -38,9 +38,9 @@
                     <td>{{ $item->user->name ?? 'Tidak diketahui' }}</td>
                     <td>{{ $item->lokasi_sampah }}</td>
                     <td>{{ ucfirst($item->jenis_sampah) }}</td>
-                    <td>{{ $item->berat_sampah }}</td>
-                    <td>Rp {{ number_format($item->nominal, 0, ',', '.') }}</td>
-                    <td>{{ ucfirst($item->status) }}</td>
+                    <td>{{ $item->volume_sampah }} liter</td>
+                    <td>{{ $item->metodeBayar ? number_format($item->metodeBayar->nominal, 0, ',', '.') . ' Rp' : '-' }}</td>
+                    <td>{{ ucfirst($item->status_lapor) }}</td>
                     <td>{{ $item->created_at->format('d-m-Y') }}</td>
                 </tr>
             @endforeach

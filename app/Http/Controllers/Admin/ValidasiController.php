@@ -6,6 +6,7 @@ use App\Models\LaporSampah;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Notifications\LaporanDitolakNotification;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class ValidasiController extends Controller
 {
@@ -50,10 +51,33 @@ class ValidasiController extends Controller
 
     public function cetakPdf(Request $request)
     {
-        // Cetak PDF
+        // Ambil filter bulan dan tahun jika ada
+        $bulan = $request->input('bulan');
+        $tahun = $request->input('tahun');
+
+        // Query laporan
+        $query = \App\Models\LaporSampah::with('user');
+
+        if ($bulan) {
+            $query->whereMonth('created_at', $bulan);
+        }
+        if ($tahun) {
+            $query->whereYear('created_at', $tahun);
+        }
+
+        $laporan = $query->get();
+
+        // Jika ingin menyesuaikan data yang dikirim ke PDF, lakukan di sini
+
+        // Render PDF
+        $pdf = Pdf::loadView('admin.validasi.pdf', compact('laporan'))
+            ->setPaper('A4', 'landscape');
+
+        return $pdf->download('laporan-validasi.pdf');
     }
+    
     /**
-     * Memvalidasi laporan sampah dan mengubah status menjadi 'menunggu diangkut'.
+     * Memvalidasi laporan sampah dan mengubah status menjadi 'diproses'.
      */
     public function validasi($id)
     {
