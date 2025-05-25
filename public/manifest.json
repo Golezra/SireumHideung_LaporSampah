@@ -1,0 +1,33 @@
+{
+  "name": "Sireum Hideung",
+  "short_name": "Sireum Hideung",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#0134d4",
+  "categories": ["mobile", "multipurpose", "blog", "ecommerce", "pwa"],
+  "orientation": "portrait",
+  "description": "SH - PWA Mobile",
+  "icons": [
+    {
+      "src": "/img/icons/icon-96x96.png",
+      "sizes": "96x96",
+      "type": "image/png"
+    },
+    {
+      "src": "/img/icons/icon-152x152.png",
+      "sizes": "152x152",
+      "type": "image/png"
+    },
+    {
+      "src": "/img/icons/icon-167x167.png",
+      "sizes": "167x167",
+      "type": "image/png"
+    },
+    {
+      "src": "/img/icons/icon-180x180.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    }
+  ]
+}
